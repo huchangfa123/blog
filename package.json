@@ -1,0 +1,30 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --harmony index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "co": "^4.6.0",
+    "jquery": "^3.1.1",
+    "koa": "^2.0.0-alpha.8",
+    "koa-bodyparser": "^2.3.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "koa-swig": "^2.2.1",
+    "mongoose": "^4.8.4",
+    "swig": "^1.4.2"
+  }
+}

@@ -1,0 +1,27 @@
+{% extends './layout.html' %}
+{% block title %}login{% endblock%}
+{% block content%}
+<h1>login</h1>
+<a href="/login">login</a>
+<a href="/register">register</a>
+<form>
+  User:<input type:"text" id="username"><br>
+  password:<input type:"text" id="password">
+</form>
+<button id = "login">login</button>
+<script>
+    $(function(){
+    $("#login").click(function(){
+      $.post('/login',{
+        user:$("#username").val(),
+        password:$("#password").val()
+      },
+      function (data, status){
+       if(status){
+         window.location.href = "/paper"
+       }
+      })   
+    })
+  })
+</script>
+{% endblock %}
