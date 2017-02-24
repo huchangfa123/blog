@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const paperSchema = new Schema({
   title: {type: String},
-  content: {type: String}
+  content: {type: String},
+  isDraft: {type: Boolean}
 })
 const Paper = mongoose.model('paper', paperSchema)
 

@@ -9,6 +9,6 @@ router.get('/', async function (ctx, next) {
   await ctx.render('index', { title, content })
 })
 
-router.post('/', submitController.create)
+router.post('/write', submitController.create)
 
 module.exports = router

@@ -3,7 +3,7 @@ const UserController = require('../app/controller/UserController')
 
 const router = new Router()
 
-const a = ['/', 'login']
+const logins = ['/', 'login']
 
 router.post('register', UserController.register)
 
@@ -13,8 +13,20 @@ router.get('register', async(ctx, next) => {
   await ctx.render('register')
 })
 
-router.get(a, async (ctx, next) => {
+router.get(logins, async (ctx, next) => {
   await ctx.render('login')
+})
+
+router.get('first', async (ctx, next) => {
+  await ctx.render('consoleFirst')
+})
+
+router.get('write', async (ctx, next) => {
+  await ctx.render('write')
+})
+
+router.get('set', async (ctx, next) => {
+  await ctx.render('set')
 })
 
 module.exports = router

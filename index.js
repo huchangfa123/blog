@@ -26,7 +26,7 @@ app.context.render = co.wrap(render({
 }))
 router.use('/', login.routes(), login.allowedMethods())
 
-router.use('/paper', api.routes(), api.allowedMethods())
+router.use('/console', api.routes(), api.allowedMethods())
 
 app.use(router.routes(), router.allowedMethods())
 

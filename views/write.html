@@ -5,6 +5,41 @@
   <label>标题</label> <input id = "title" type="text"> 
  </div>
  <div id = "write_body">
-      asdas
+    <textarea rows="25" cols="70" id ="content"></textarea>
+    <button id = "save">存草稿</button>
+    <button id = "pass">提交</button>
  </div>
+  <script>
+    var simplemde = new SimpleMDE();
+    var isDraft = false;
+    //判断是否为草稿
+    $("#save").click(function (){
+      isDraft = true;
+      $.post("/console/write",
+      {
+        title : $("#title").val(),
+        content : $("#content").val(),
+        draft : isDraft
+      },
+    function (data, status){
+       if(status){
+         window.location.href = "/write"
+       }
+      })
+    })
+    //上传文章
+    $("#pass").click(function (){
+      $.post("/console/write",
+      {
+        title : $("#title").val(),
+        content : $("#cnontent").val(),
+        draft : isDraft
+      },
+      function (data, status){
+       if(status){
+         window.location.href = "/write"
+       }
+      })
+    })
+  </script> 
 {% endblock %}

@@ -2,9 +2,11 @@ const PaperModel = require('../../models/paper')
 
 exports.create = async(ctx, next) => {
   const { title, content } = ctx.request.body
+  const isDraft = ctx.request.body.draft
   const paperEntity = new PaperModel({
     title,
-    content
+    content,
+    isDraft
   })
 
   await paperEntity.save()
