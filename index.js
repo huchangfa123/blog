@@ -3,7 +3,7 @@ const Route = require('koa-router')
 const co = require('co')
 const path = require('path')
 const render = require('koa-swig')
-const api = require('./routes/api')
+const consoleRouter = require('./routes/consoleRoutes')
 const login = require('./routes/firstRoutes')
 const mongoose = require('mongoose')
 const serve = require('koa-static')
@@ -26,7 +26,7 @@ app.context.render = co.wrap(render({
 }))
 router.use('/', login.routes(), login.allowedMethods())
 
-router.use('/console', api.routes(), api.allowedMethods())
+router.use('/', consoleRouter.routes(), consoleRouter.allowedMethods())
 
 app.use(router.routes(), router.allowedMethods())
 

@@ -1,4 +1,4 @@
-const UserModel = require('../../models/user')
+const UserModel = require('../models/user')
 
 exports.register = async(ctx, next) => {
   const user = ctx.request.body.user
@@ -19,10 +19,14 @@ exports.login = async(ctx, next) => {
     name: ctx.request.body.user,
     password: ctx.request.body.password
   })
+
   if (result) {
+    ctx.status = 200
     ctx.body = {
-      success: true
+      success: true,
+      data: {
+        name: ctx.request.body.user
+      }
     }
-    return ctx.body
   }
 }

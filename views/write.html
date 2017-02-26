@@ -10,35 +10,37 @@
     <button id = "pass">提交</button>
  </div>
   <script>
-    var simplemde = new SimpleMDE();
-    var isDraft = false;
-    //判断是否为草稿
-    $("#save").click(function (){
-      isDraft = true;
-      $.post("/console/write",
-      {
-        title : $("#title").val(),
-        content : $("#content").val(),
-        draft : isDraft
-      },
-    function (data, status){
-       if(status){
-         window.location.href = "/write"
-       }
-      })
-    })
-    //上传文章
-    $("#pass").click(function (){
-      $.post("/console/write",
-      {
-        title : $("#title").val(),
-        content : $("#cnontent").val(),
-        draft : isDraft
-      },
+    $(function(){
+      var simplemde = new SimpleMDE();
+      var isDraft = false;
+      //判断是否为草稿
+      $("#save").click(function (){
+        isDraft = true;
+        $.post("/console/write",
+        {
+          title : $("#title").val(),
+          content : simplemde.value(),
+          draft : isDraft
+        },
       function (data, status){
-       if(status){
-         window.location.href = "/write"
-       }
+        if(status){
+          window.location.href = "/write"
+        }
+        })
+      })
+      //上传文章
+      $("#pass").click(function (){
+        $.post("/write",
+        {
+          title : $("#title").val(),
+          content : simplemde.value(),
+          draft : isDraft
+        },
+        function (data, status){
+          if(status){
+            window.location.href = "/write"
+          }
+        })
       })
     })
   </script> 
