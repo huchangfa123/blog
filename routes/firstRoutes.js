@@ -17,17 +17,5 @@ router.get(logins, async (ctx, next) => {
   await ctx.render('login')
 })
 
-router.get('first', async (ctx, next) => {
-  await ctx.render('consoleFirst')
-})
-
-router.get('write', async (ctx, next) => {
-  await ctx.render('write')
-})
-
-router.get('set', async (ctx, next) => {
-  await ctx.render('set')
-})
-
 module.exports = router
 

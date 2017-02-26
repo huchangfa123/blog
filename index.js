@@ -24,6 +24,7 @@ app.context.render = co.wrap(render({
   cache: 'memory', // disable, set to false
   ext: 'html'
 }))
+
 router.use('/', login.routes(), login.allowedMethods())
 
 router.use('/', consoleRouter.routes(), consoleRouter.allowedMethods())

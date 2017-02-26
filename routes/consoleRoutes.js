@@ -13,4 +13,16 @@ router.post('write', submitController.create)
 
 router.get('getPaper', submitController.getlist)
 
+router.get('first', async (ctx, next) => {
+  await ctx.render('consoleFirst')
+})
+
+router.get('write', async (ctx, next) => {
+  await ctx.render('write')
+})
+
+router.get('set', async (ctx, next) => {
+  await ctx.render('set')
+})
+
 module.exports = router
