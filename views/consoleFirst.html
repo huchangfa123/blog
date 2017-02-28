@@ -14,17 +14,26 @@
   </div>
   <script>
     $(function(){
-      $.get('/getPaper',function(data, status){
+      var paperlist = [];
+      $.get('/getPaperlist',function(data, status){
         if (status){
+          paperlist = data.data
           //alert(data.data[0].title);
           for (let i = 0; i < data.data.length; i++)
-            $("#listPlace").append("<tr>"+
+            $("#listPlace").append("<tr id=\"" + data.data[i]._id + "\">" +
                                    "<td>"+ data.data[i].title + "</td>"+
                                    "<td>"+ 1 + "</td>" + 
                                    "<td>"+ 2 + "</td>"
                                    + "</tr>")
         }
+        for(let i = 0; i < paperlist.length; i ++ ){
+        $("#" + paperlist[i]._id).dblclick(function(){
+          const url = "/reading?id=" + (paperlist[i]._id).toString()
+          window.location.href = url
+        })
+      }
       })
+   
     })
   </script>
 {% endblock %}

@@ -1,5 +1,6 @@
 const Router = require('koa-router')
 const UserController = require('../controller/UserController')
+const IdentityModel = require('../models/identity')
 
 const router = new Router()
 
@@ -14,7 +15,11 @@ router.get('register', async(ctx, next) => {
 })
 
 router.get(logins, async (ctx, next) => {
-  await ctx.render('login')
+  const token = ctx.cookies.get('token')
+  const Permission = await IdentityModel.findOne({token: token})
+  if (Permission) {
+    await ctx.redirect('first')
+  } else await ctx.render('login')
 })
 
 module.exports = router

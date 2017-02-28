@@ -2,15 +2,18 @@ const Koa = require('koa')
 const Route = require('koa-router')
 const co = require('co')
 const path = require('path')
-const render = require('koa-swig')
+const render = require('koa-swig')// set template
 const consoleRouter = require('./routes/consoleRoutes')
-const login = require('./routes/firstRoutes')
-const mongoose = require('mongoose')
-const serve = require('koa-static')
-const bodyparser = require('koa-bodyparser')
+const login = require('./routes/loginRoutes')
+const mongoose = require('mongoose')// db
+const serve = require('koa-static')// set static file
+const bodyparser = require('koa-bodyparser')// get body
 
 const app = new Koa()
-const router = new Route()
+const firstrouter = new Route()
+const afterrouter = new Route()
+
+mongoose.Promise = require('bluebird')
 // 设置数据库
 mongoose.connect('mongodb://localhost:27017/paper')
 
@@ -25,10 +28,12 @@ app.context.render = co.wrap(render({
   ext: 'html'
 }))
 
-router.use('/', login.routes(), login.allowedMethods())
+firstrouter.use('/', login.routes(), login.allowedMethods())
 
-router.use('/', consoleRouter.routes(), consoleRouter.allowedMethods())
+app.use(firstrouter.routes(), firstrouter.allowedMethods())
 
-app.use(router.routes(), router.allowedMethods())
+afterrouter.use('/', consoleRouter.routes(), consoleRouter.allowedMethods())
+
+app.use(afterrouter.routes(), afterrouter.allowedMethods())
 
 module.exports = app

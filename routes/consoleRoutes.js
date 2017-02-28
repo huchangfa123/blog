@@ -1,17 +1,11 @@
 const Router = require('koa-router')
 const submitController = require('../controller/submitPaperController')
-
+// const Token = require('../middleware/hashToken')
 const router = new Router()
-
-router.get('/', async function (ctx, next) {
-  const title = '123'
-  const content = 'huchangfa'
-  await ctx.render('index', { title, content })
-})
 
 router.post('write', submitController.create)
 
-router.get('getPaper', submitController.getlist)
+router.get('getPaperlist', submitController.getlist)
 
 router.get('first', async (ctx, next) => {
   await ctx.render('consoleFirst')
@@ -24,5 +18,11 @@ router.get('write', async (ctx, next) => {
 router.get('set', async (ctx, next) => {
   await ctx.render('set')
 })
+
+router.get('reading', async(ctx, next) => {
+  await ctx.render('reading')
+})
+
+router.post('getPaper', submitController.getPaper)
 
 module.exports = router

@@ -1,5 +1,5 @@
 const UserModel = require('../models/user')
-const setToken = require('../middleware/hashToken')
+const Token = require('../middleware/hashToken')
 
 exports.register = async(ctx, next) => {
   const user = ctx.request.body.user
@@ -12,17 +12,15 @@ exports.register = async(ctx, next) => {
   ctx.body = {
     success: true
   }
-  return ctx.body
 }
 
 exports.login = async(ctx, next) => {
+  await Token.setToken(ctx, next)
+  // console.log(answers)
   const result = await UserModel.findOne({
     name: ctx.request.body.user,
     password: ctx.request.body.password
   })
-
-  await setToken.setToken
-
   if (result) {
     ctx.status = 200
     ctx.body = {
