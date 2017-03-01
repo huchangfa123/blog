@@ -7,6 +7,8 @@ router.post('write', submitController.create)
 
 router.get('getPaperlist', submitController.getlist)
 
+router.post('getPaper', submitController.getPaper)
+
 router.get('first', async (ctx, next) => {
   await ctx.render('consoleFirst')
 })
@@ -22,7 +24,5 @@ router.get('set', async (ctx, next) => {
 router.get('reading', async(ctx, next) => {
   await ctx.render('reading')
 })
-
-router.post('getPaper', submitController.getPaper)
 
 module.exports = router

@@ -8,6 +8,7 @@ const login = require('./routes/loginRoutes')
 const mongoose = require('mongoose')// db
 const serve = require('koa-static')// set static file
 const bodyparser = require('koa-bodyparser')// get body
+const Token = require('./middleware/hashToken')
 
 const app = new Koa()
 const firstrouter = new Route()
@@ -31,6 +32,8 @@ app.context.render = co.wrap(render({
 firstrouter.use('/', login.routes(), login.allowedMethods())
 
 app.use(firstrouter.routes(), firstrouter.allowedMethods())
+
+app.use(Token.checkToken)
 
 afterrouter.use('/', consoleRouter.routes(), consoleRouter.allowedMethods())
 

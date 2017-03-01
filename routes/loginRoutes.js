@@ -17,10 +17,12 @@ router.get('register', async(ctx, next) => {
 router.get(logins, async (ctx, next) => {
   const token = ctx.cookies.get('token')
   const Permission = await IdentityModel.findOne({token: token})
-  if (Permission) {
+  if (Permission != null) {
     await ctx.redirect('first')
   } else await ctx.render('login')
 })
+
+router.get('logout', UserController.logout)
 
 module.exports = router
 

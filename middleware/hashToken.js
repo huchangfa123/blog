@@ -28,14 +28,24 @@ exports.setToken = async (ctx, next) => {
 exports.checkToken = async (ctx, next) => {
   // get token from cookies
   const token = ctx.cookies.get('token')
+  // 此处permission为数组
   const Permission = await IdentityModel.find({token: token})
-  if (Permission) {
-    next()
+  if (Permission.length !== 0) {
+    await next()
   } else {
     ctx.status = 401
     ctx.body = {
       success: false,
       message: '授权失败'
     }
+    ctx.redirect('login')
   }
+}
+
+exports.clearcookies = async (ctx, next) => {
+  await ctx.cookies.set('token', null,
+    {
+      httpOnly: false,
+      overwrite: true
+    })
 }

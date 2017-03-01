@@ -31,3 +31,12 @@ exports.login = async(ctx, next) => {
     }
   }
 }
+
+exports.logout = async(ctx, next) => {
+  await Token.clearcookies(ctx, next)
+  ctx.body = {
+    success: true,
+    message: '已退出'
+  }
+  await ctx.redirect('login')
+}

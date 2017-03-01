@@ -1,4 +1,5 @@
 const PaperModel = require('../models/paper')
+const mongoose = require('mongoose')
 // save paper in db
 exports.create = async(ctx, next) => {
   const { title, content } = ctx.request.body
@@ -10,12 +11,17 @@ exports.create = async(ctx, next) => {
   })
   await paperEntity.save()
   console.log(paperEntity.content)
-  ctx.status = 200
+  ctx.body = {
+    success: true,
+    data: {
+      title,
+      content
+    }
+  }
 }
 // get paper list
 exports.getlist = async(ctx, next) => {
   const paperlist = await PaperModel.find({ isDraft: false })
-  console.log(paperlist)
   ctx.body = {
     success: true,
     data: paperlist
@@ -23,17 +29,19 @@ exports.getlist = async(ctx, next) => {
 }
 // get appointed paper
 exports.getPaper = async(ctx, next) => {
-  const id = ctx.request.body._id
-  const paperdata = await PaperModel.find({_id: id})
-  const title = paperdata.title
-  const content = paperdata.content
-  ctx.body = {
-    success: true,
-    data: {
-      title: title,
-      content: content
+  var id = ctx.request.body._id
+  var paperId = mongoose.Types.ObjectId(id)
+  // paperdata是一个数组，要获取具体内容就要从paperdata[0]获取
+  const paperdata = await PaperModel.find({ _id: paperId })
+  if (paperdata) {
+    ctx.body = {
+      success: true,
+      data: {
+        title: paperdata[0].title,
+        content: paperdata[0].content
+      }
     }
+    return ctx.body
   }
-  await ctx.redirect('reading')
 }
 
