@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 {% block body %}
-  <h1>首页</h1>
+<div class="col-md-4 recentUpdate">
+  <h4>最近更新</h4>
   <div id = "paperlist">
    <table class="table">
      <thead>
@@ -12,18 +13,27 @@
      </tbody>
    </table>
   </div>
+</div>
+
+<div class="col-md-4 historyPaper">
+    <h4>历史文章</h4>
+    <ul id="historylist">
+    </ul>
+<div>
+
   <script>
     $(function(){
       var paperlist = [];
+      var historylist = [];
       $.get('/getPaperlist',function(data, status){
         if (status){
           paperlist = data.data
           //alert(data.data[0].title);
-          for (let i = 0; i < data.data.length; i++)
+          for (let i = 0; i < 10; i++)
             $("#listPlace").append("<tr id=\"" + data.data[i]._id + "\">" +
                                    "<td>"+ data.data[i].title + "</td>"+
                                    "<td>"+ 1 + "</td>" + 
-                                   "<td>"+ 2 + "</td>"
+                                   "<td>"+ data.data[i].date + "</td>"
                                    + "</tr>")
         }
         for(let i = 0; i < paperlist.length; i ++ ){
@@ -32,7 +42,23 @@
           window.location.href = url
         })
       }
-      })
+    })
+    $.get('/getHistroylist', function(data, status){
+      if(status){
+        historylist = data.data
+        for (let i = 0; i < 10; i++){
+          let date = (data.data[i].date).replace(/-/g,"/")
+          date = new Date(date)
+          let month = date.getMonth()+1
+          let day = date.getDay()
+          $("#historylist").append( "<li>" + "<span>" + month + "." + day + "</span>" +
+                                    "<a href=\"/reading?id=" + data.data[i]._id + "\">"+
+                                    data.data[i].title + "</a></li>"
+                                  )
+        }
+      }
+    })
+    
    
     })
   </script>

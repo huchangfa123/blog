@@ -7,6 +7,8 @@ router.post('write', submitController.create)
 
 router.get('getPaperlist', submitController.getlist)
 
+router.get('getHistroylist', submitController.gethistorylist)
+
 router.post('getPaper', submitController.getPaper)
 
 router.get('first', async (ctx, next) => {

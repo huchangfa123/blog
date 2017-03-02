@@ -1,0 +1,70 @@
+.box {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  align-items: center; 
+}
+.form-group label{
+   display: flex;
+  justify-content: flex-end;
+}
+.recentUpdate {
+  position: relative;
+  top:60px;
+  right: 200px;
+  border: black solid thin;
+  width:400px;
+  height: 400px;
+}   
+.historyPaper {
+  position: relative;
+  top:60px;
+  border: black solid thin;
+  width:400px;
+  height: 400px;
+}
+.historyPaper a {
+  margin-left: 10px
+}
+.historyPaper li {
+  list-style-type: none
+}
+.write_body {
+
+
+  position: relative;
+  top:60px;
+  right: 200px;
+}
+.form-horizontal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px
+}
+.form-group {
+  width: 600px;
+  padding-left: 13px;
+}
+.form-group1 {
+  margin-bottom: 20px;
+}
+.form-group1 input {
+  width: 585px;
+}
+.write_body {
+  display: flex;
+  justify-content: space-between;
+}
+.write_body textarea {
+  resize: none;
+  width: 100px;
+  height: 100px;
+  max-width: 200px;
+  max-height: 100px;
+}
+.classical {
+  border: black solid thin;
+  width:200px;
+  height: 200px;
+}

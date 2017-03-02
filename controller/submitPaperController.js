@@ -4,10 +4,13 @@ const mongoose = require('mongoose')
 exports.create = async(ctx, next) => {
   const { title, content } = ctx.request.body
   const isDraft = ctx.request.body.draft
+  const date = ctx.request.body.date
+ // const type = ctx.request.body.type
   const paperEntity = new PaperModel({
     title,
     content,
-    isDraft
+    isDraft,
+    date
   })
   await paperEntity.save()
   console.log(paperEntity.content)
@@ -19,14 +22,24 @@ exports.create = async(ctx, next) => {
     }
   }
 }
-// get paper list
+// get recentpaper list
 exports.getlist = async(ctx, next) => {
-  const paperlist = await PaperModel.find({ isDraft: false })
+  const paperlist = await PaperModel.find({ isDraft: false }).sort({'date': 'desc'})
   ctx.body = {
     success: true,
     data: paperlist
   }
 }
+
+// get historyPaper list
+exports.gethistorylist = async(ctx, next) => {
+  const paperlist = await PaperModel.find({ isDraft: false }).sort({'date': 'asc'})
+  ctx.body = {
+    success: true,
+    data: paperlist
+  }
+}
+
 // get appointed paper
 exports.getPaper = async(ctx, next) => {
   var id = ctx.request.body._id

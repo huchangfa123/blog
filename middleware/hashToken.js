@@ -31,6 +31,7 @@ exports.checkToken = async (ctx, next) => {
   // 此处permission为数组
   const Permission = await IdentityModel.find({token: token})
   if (Permission.length !== 0) {
+    // 要await否则在执行下面的内容之前就返回了
     await next()
   } else {
     ctx.status = 401
