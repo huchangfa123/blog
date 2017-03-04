@@ -30,8 +30,6 @@
   list-style-type: none
 }
 .write_body {
-
-
   position: relative;
   top:60px;
   right: 200px;
@@ -52,10 +50,10 @@
 .form-group1 input {
   width: 585px;
 }
-.write_body {
+/*.write_body {
   display: flex;
   justify-content: space-between;
-}
+}*/
 .write_body textarea {
   resize: none;
   width: 100px;
@@ -64,7 +62,11 @@
   max-height: 100px;
 }
 .classical {
+  float: right;
   border: black solid thin;
   width:200px;
   height: 200px;
+}
+.classical li {
+  list-style-type: none
 }

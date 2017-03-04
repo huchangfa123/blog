@@ -18,16 +18,20 @@
       <h4>分类</h4>
       <ul>
         <li>
-          <input type="checkbox" id="essay">
-          <label for="essay">随笔</label>
+          <input type="checkbox" name="class">
+          <label for="class">默认</label>
         </li>
         <li>
-          <input type="checkbox" id="essay">
-          <label for="essay">学习</label>
+          <input type="checkbox" name="class">
+          <label for="class">随笔</label>
         </li>
         <li>
-          <input type="checkbox" id="essay">
-          <label for="essay">其他</label>
+          <input type="checkbox" name="class">
+          <label for="class">学习</label>
+        </li>
+        <li>
+          <input type="checkbox" name="class">
+          <label for="class">其他</label>
         </li>
       </ul>
     </div>
@@ -89,6 +93,15 @@
             window.location.href = "/write"
           }
         })
+      })
+
+      $('input[name="class"]').each(function(){
+          $(this).click(function(){
+            if($(this).attr('checked')){
+              $('input[name="class"]').removeAttr('checked');
+              $(this).attr('checked','checked');
+            }
+          })
       })
     })
   </script> 
