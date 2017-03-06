@@ -9,7 +9,11 @@ router.get('getPaperlist', submitController.getlist)
 
 router.get('getHistroylist', submitController.gethistorylist)
 
+router.get('getMessage', submitController.getMessage)
+
 router.post('getPaper', submitController.getPaper)
+
+router.post('setMessage', submitController.setMessage)
 
 router.get('first', async (ctx, next) => {
   await ctx.render('consoleFirst')

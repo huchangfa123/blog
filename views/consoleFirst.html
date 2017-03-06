@@ -29,10 +29,10 @@
         if (status){
           paperlist = data.data
           //alert(data.data[0].title);
-          for (let i = 0; i < 10; i++)
+          for (let i = 0; i < data.data.length%10; i++)
             $("#listPlace").append("<tr id=\"" + data.data[i]._id + "\">" +
                                    "<td>"+ data.data[i].title + "</td>"+
-                                   "<td>"+ 1 + "</td>" + 
+                                   "<td>"+ data.data[i].type + "</td>" + 
                                    "<td>"+ data.data[i].date + "</td>"
                                    + "</tr>")
         }
@@ -46,11 +46,11 @@
     $.get('/getHistroylist', function(data, status){
       if(status){
         historylist = data.data
-        for (let i = 0; i < 10; i++){
+        for (let i = 0; i < data.data.length%10; i++){
           let date = (data.data[i].date).replace(/-/g,"/")
           date = new Date(date)
           let month = date.getMonth()+1
-          let day = date.getDay()
+          let day = date.getDate()
           $("#historylist").append( "<li>" + "<span>" + month + "." + day + "</span>" +
                                     "<a href=\"/reading?id=" + data.data[i]._id + "\">"+
                                     data.data[i].title + "</a></li>"

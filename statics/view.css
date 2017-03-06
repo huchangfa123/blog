@@ -54,19 +54,19 @@
   display: flex;
   justify-content: space-between;
 }*/
-.write_body textarea {
-  resize: none;
-  width: 100px;
-  height: 100px;
-  max-width: 200px;
-  max-height: 100px;
+.CodeMirror {
+  height: 300px;
+}
+.textplace {
+  float: left;
 }
 .classical {
-  float: right;
+  margin-left: 50px;
+  float: left;
   border: black solid thin;
   width:200px;
   height: 200px;
 }
 .classical li {
-  list-style-type: none
+   list-style-type: none
 }
