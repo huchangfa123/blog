@@ -12,6 +12,7 @@
       _id : id
     },function(data,status){
         if(status){
+        data.data.content = data.data.content.replace(/\n/g,"<br>")
         $("#title").append("<h1>"+ data.data.title+"</h1>")
         $("#content").append("<p>"+ data.data.content+"</p>")  
       }

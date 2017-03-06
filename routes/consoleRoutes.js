@@ -15,6 +15,10 @@ router.post('getPaper', submitController.getPaper)
 
 router.post('setMessage', submitController.setMessage)
 
+router.get('show', async(ctx, next) => {
+  await ctx.render('blog')
+})
+
 router.get('first', async (ctx, next) => {
   await ctx.render('consoleFirst')
 })
