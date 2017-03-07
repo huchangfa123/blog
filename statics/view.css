@@ -70,3 +70,46 @@
 .classical li {
    list-style-type: none
 }
+#recentlist li{
+  list-style-type: none;
+}
+#recentlist li:hover{
+  background-color:	#E0E0E0
+}
+.listtitle {
+  color: dodgerblue;
+  margin-bottom: 20px;
+}
+.listmessage {
+  color:dimgrey;
+  margin-top: -20px;
+  margin-bottom: -10px;
+}
+.recentpaper {
+  float: left;
+  width: 700px;
+  height: 500px;
+}
+.historypaper {
+  float: left;
+  width: 400px;
+  height: 500px;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+}
+.historypaper li {
+  list-style-type: none;
+}
+.historypaper a {
+  margin-top: 5px;
+  margin-left: 10px
+}
+.about {
+  text-align: center;
+  margin-top: 200px;
+}
+.about h5 {
+  color: gray
+}

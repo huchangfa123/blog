@@ -1,0 +1,32 @@
+{% extends './layout.html' %}
+{% block title %}read{% endblock%}
+{% block content%}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div>
+          <ul class="nav navbar-nav">
+              <li class="active"><a href="/show">首页</a></li>
+              <li><a href="/showabout">关于</a></li>
+          </ul>
+      </div>
+    </div>
+</nav>
+<div id="title"></div>
+<div id="content"></div>
+<script>
+  $(function(){ 
+    const URL = document.URL
+    const getdata = URL.split('?')[1]
+    const id = getdata.split('=')[1]
+    $.post('/getpaper',{
+      _id : id
+    },function(data,status){
+        if(status){
+        data.data.content = data.data.content.replace(/\n/g,"<br>")
+        $("#title").append("<h1>"+ data.data.title+"</h1>")
+        $("#content").append("<p>"+ data.data.content+"</p>")  
+      }
+    })
+  })
+</script>
+{% endblock %}

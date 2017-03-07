@@ -15,6 +15,14 @@ router.post('getPaper', submitController.getPaper)
 
 router.post('setMessage', submitController.setMessage)
 
+router.get('read', async(ctx, next) => {
+  await ctx.render('read')
+})
+
+router.get('showabout', async(ctx, next) => {
+  await ctx.render('about')
+})
+
 router.get('show', async(ctx, next) => {
   await ctx.render('blog')
 })

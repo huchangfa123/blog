@@ -1,0 +1,28 @@
+{% extends './layout.html' %}
+{% block title %}read{% endblock%}
+{% block content%}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div>
+          <ul class="nav navbar-nav">
+              <li><a href="/show">首页</a></li>
+              <li  class="active"><a href="/showabout">关于</a></li>
+          </ul>
+      </div>
+    </div>
+</nav>
+<div class="about" id = "about">
+  <h5 id="username"></h5>
+  <h5 id="mybirth"></h5>
+  <h5 id="introduce"></h5>
+</div>
+<script>
+     $.get('/getMessage', function(data, status){
+        if(status){
+          $("#username").text("博主: " + data.data.name)
+          $("#mybirth").text("生日： " + data.data.birth)
+          $("#introduce").text("简介: "+ data.data.introduce)
+        }
+      })
+</script>
+{% endblock %}

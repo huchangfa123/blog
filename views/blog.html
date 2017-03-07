@@ -11,19 +11,51 @@
       </div>
     </div>
 </nav>
-<div class = "recentpaper">
-  <ul id="recentlist">
-  </ul>
+
+<div class="showBody">
+  <div class = "recentpaper">
+    <ul id="recentlist">
+    </ul>
+  </div>
+  <div class = "historypaper">
+    <h3>以前的文章</h3>
+    <ul id="historylist">
+    </ul>
+  </div>
 </div>
+
 
 <script>
   $(function(){
     let paperlist = []
+    let historylist = []
     $.get('/getPaperlist', function(data, status){
       if(status){
         paperlist = data.data
         for (let i = 0; i < data.data.length%10; i++){
-          $("#recentlist").append("<li>"+paperlist[i].title+"</li>")
+          const content = paperlist[i].content.replace(/\n/g,"<br>")
+          $("#recentlist").append("<li><article>"+
+                                  "<h3><a class=\"listtitle\" href=\"/read?id =" + paperlist[i]._id + "\">" +paperlist[i].title+"</a></h3><br>"+
+                                  "<h5 class =\"listmessage\">"+paperlist[i].date +" "+
+                                  "&nbsp;&nbsp;&nbsp;类型:&nbsp;"+paperlist[i].type + "</h5><br>" +
+                                  "<p class=\"listcontent\">"+content+"</p>"+
+                                  "</article></li>")
+        }
+      }
+    })
+
+    $.get('/getHistroylist', function(data, status){
+      if(status){
+        historylist = data.data
+        for (let i = 0; i < data.data.length%10; i++){
+          let date = (data.data[i].date).replace(/-/g,"/")
+          date = new Date(date)
+          let month = date.getMonth()+1
+          let day = date.getDate()
+          $("#historylist").append( "<li>" + "<span>" + month + "." + day + "</span>" +
+                                    "<a href=\"/read?id=" + data.data[i]._id + "\">"+
+                                    data.data[i].title + "</a></li>"
+                                  )
         }
       }
     })
