@@ -16,7 +16,7 @@ const afterrouter = new Route()
 
 mongoose.Promise = require('bluebird')
 // 设置数据库
-mongoose.connect('mongodb://localhost:27017/paper')
+mongoose.connect('admin:sxQRL1s8zXj4@db2.daocloudinternal.io:60334/temp_db')
 
 app.use(serve(path.join(__dirname, 'statics')))
 app.use(bodyparser())
