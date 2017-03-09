@@ -18,7 +18,7 @@ exports.setToken = async (ctx, next) => {
   // set token in cookies
   ctx.cookies.set('token', tokenkey,
     {
-      httpOnly: false,
+      httpOnly: true,
       overwrite: true,
       expires: new Date(date)
     })

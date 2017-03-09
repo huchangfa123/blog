@@ -24,9 +24,9 @@
     $(function(){
       $.get('/getMessage', function(data, status){
         if(status){
-          $("#username").val(data.name)
-          $("#mybirth").val(data.birth)
-          $("#introduce").val(data.introduce)
+          $("#username").val(data.data.name)
+          $("#mybirth").val(data.data.birth)
+          $("#introduce").val(data.data.introduce)
         }
       })
       $("#submit").click(function(){
